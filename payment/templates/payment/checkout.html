@@ -1,0 +1,80 @@
+{% extends "base.html" %} 
+{% block content %} 
+<header class="bg-primary py-5">
+  <div class="container px-4 px-lg-5 my-5">
+    <div class="text-center text-white">
+      <h1 class="display-4 fw-bolder">Checkout Page...</h1>
+      <p class="lead fw-normal text-white-50 mb-0">
+        Review your selected products before making payments.
+      </p>
+    </div>
+  </div>
+</header>
+
+<!-- Unified Checkout Card -->
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-10">
+      <div class="card shadow-sm mb-5">
+        <!-- Header -->
+        <div class="card-header bg-success text-white text-center">
+          <h5 class="mb-0">Checkout Overview</h5>
+        </div>
+
+        <!-- Two-column Layout -->
+        <div class="card-body bg-light">
+          <div class="row">
+            <!-- Order Summary Column -->
+            <div class="col-md-6 border-end pe-4">
+              <h6 class="fw-bold mb-3 text-primary">Order Summary</h6>
+              {% for product in cart_products %}
+                <div class="d-flex align-items-center border-bottom py-2">
+                  <img src="{{ product.image.url }}" alt="{{ product.name }}" class="img-thumbnail me-3" style="width: 80px; height: 80px; object-fit: cover;">
+                  <div>
+                    <h6 class="fw-bold mb-1">{{ product.name }}</h6>
+                    <p class="mb-1">
+                      {% if product.is_sale %}
+                        <span class="text-danger">Price: {{ product.sale_price }}</span>
+                      {% else %}
+                        <span>Price: {{ product.price }}</span>
+                      {% endif %}
+                    </p>
+                    <p class="mb-0">Quantity:
+                      {% for key, value in quantities.items  %}
+                        {% if key == product.pk|slugify %} 
+                          {{ value }}
+                        {% endif %}
+                      {% endfor %}
+                    </p>
+                  </div>
+                </div>
+              {% endfor %}
+
+              <div class="mt-3">
+                <h6>Total: <span class="text-success">{{ totals }} FCFA</span></h6>
+                <a href="{% url 'cart_summary' %}" class="btn btn-sm btn-primary mt-2">Update Items</a>
+              </div>
+            </div>
+
+            <!-- Shipping Info Column -->
+            <div class="col-md-6 ps-4">
+              <h6 class="fw-bold mb-3 text-secondary">Shipping Information</h6>
+              <form method="POST" action="{% url 'billing_info'  %}">
+                <div class="mb-3">
+                  {% csrf_token %}
+                  {{ shipping_form.as_p }}
+                </div>
+                <div class="text-end mt-4">
+                  <button type="submit" class="btn btn-lg btn-success">Continue to Billing</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div> <!-- End card-body -->
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}

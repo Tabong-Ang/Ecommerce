@@ -1,0 +1,39 @@
+{% extends "base.html" %} 
+
+{% block content %}
+   
+
+<header class="bg-primary py-5">
+  <div class="container px-4 px-lg-5 my-5">
+    <div class="text-center text-white">
+      <h1 class="display-4 fw-bolder">Product Categories</h1>
+      <p class="lead fw-normal text-white-50 mb-0">
+        Explore our diverse range of products across various categories.
+      </p>
+    </div>
+  </div>    
+</header>
+
+{% comment %} Display categories in a grid layout {% endcomment %}
+<div class="container py-5">
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    {% for category in categories %}
+    <div class="col">
+      <div class="card h-100 shadow-lg border-0" style="transition: transform 0.3s ease; ">
+        <img
+          src="{{ category.image.url }}"
+          class="card-img-top rounded-top"
+          alt="{{ category.name }}"
+        />
+        <div class="card-body d-flex flex-column justify-content-between p-4">
+          <h5 class="card-title text-center">{{ category.name }}</h5>
+          <a href="{% url 'category' category %}" class="btn btn-outline-primary mt-3">Browse {{ category.name }}</a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container mt-5 mb-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-10">
+      <div class="card shadow-lg border-0">
+        <!-- Header -->
+        <div class="card-header bg-success text-white text-center py-4">
+          <h3 class="mb-0 fw-bold">Order {{ order.pk }} - {{ order.amount_paid }} FCFA</h3>
+        </div>
+        <div class="card-body px-4 py-4">
+          <div class="mb-3">
+            <i class="bi bi-envelope-fill me-2 text-muted"></i><strong>Email:</strong> {{ order.email }}
+          </div>
+
+          {% if order.date_shipped %}
+          <div class="mb-3">
+            <i class="bi bi-truck me-2 text-muted"></i><strong>Date Shipped:</strong> {{ order.date_shipped }}
+          </div>
+          {% else %}
+          <div class="mb-3">
+            <i class="bi bi-calendar-check me-2 text-muted"></i><strong>Date Ordered:</strong> {{ order.date_ordered }}
+          </div>
+          {% endif %}
+
+          <div class="mb-3">
+            <i class="bi bi-person-fill me-2 text-muted"></i><strong>Name:</strong> {{ order.full_name }}
+          </div>
+
+          <div class="mb-3">
+            <i class="bi bi-geo-alt-fill me-2 text-muted"></i><strong>Shipping Address:</strong>
+            <pre class="bg-light p-2 rounded">{{ order.shipping_address1 }}</pre>
+          </div>
+
+          <div class="mt-4">
+            <h5 class="fw-semibold mb-3 text-primary">Items Ordered</h5>
+            {% for item in items %}
+            <div class="bg-light p-2 rounded mb-2 d-flex justify-content-between align-items-center">
+              <div>{{ item.product }} (x{{ item.quantity }})</div>
+              <div class="text-end fw-bold text-success">{{ item.price }} FCFA</div>
+            </div>
+            {% endfor %}
+            
+            {% if not order.is_shipped %}
+                <form method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="shipping_status", value='true'>
+                    <button type="submit" class="btn btn-success">Mark as Shipped</button>
+                </form>
+            {% else %}
+                <form method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="shipping_status", value='false'>
+                    <button type="submit" class="btn btn-danger">Mark as not Shipped</button>
+                </form>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock  %}
