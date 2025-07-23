@@ -92,7 +92,7 @@ DATABASES = {
         'NAME': 'railway',
         'USER': 'postgres',
         'PASSWORD': os.environ['DATABASES_PASSWORD'],
-        'HOST': 'ecommerce.railway.internal',
+        'HOST': 'postgres.railway.internal',
         'PORT': '5432',
     }
 }
