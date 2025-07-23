@@ -30,8 +30,8 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-CSRF_TRUSTED_ORIGINS = []
+ALLOWED_HOSTS = ['ecommerce-production-5de5.up.railway.app', 'https://ecommerce-production-5de5.up.railway.app']
+CSRF_TRUSTED_ORIGINS = ['ecommerce-production-5de5.up.railway.app', 'https://ecommerce-production-5de5.up.railway.app']
 
 
 # Application definition
@@ -92,7 +92,7 @@ DATABASES = {
         'NAME': 'railway',
         'USER': 'postgres',
         'PASSWORD': os.environ.get('DATABASES_PASSWORD'),
-        'HOST': 'postgres-production-9be5.up.railway.app',
+        'HOST': 'ecommerce.railway.internal',
         'PORT': '5432',
     }
 }
