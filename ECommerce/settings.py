@@ -31,7 +31,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = True
 
 ALLOWED_HOSTS = ['ecommerce-production-5de5.up.railway.app', 'https://ecommerce-production-5de5.up.railway.app']
-CSRF_TRUSTED_ORIGINS = ['ecommerce-production-5de5.up.railway.app', 'https://ecommerce-production-5de5.up.railway.app']
+CSRF_TRUSTED_ORIGINS = ['https://ecommerce-production-5de5.up.railway.app']
 
 
 # Application definition
