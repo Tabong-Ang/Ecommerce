@@ -1,1 +1,2 @@
-web: python manage.py migrate && gunicorn Store.wsgi --bind 0.0.0.0:$PORT --log-file -
+web: gunicorn Store.wsgi --log-file
+web: python manage.py migrate && gunicorn Store.wsg
