@@ -30,7 +30,7 @@ SECRET_KEY = os.environ['SECRET_KEY']
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['ecommerce-production-d757.up.railway.app', 'https://ecommerce-production-d757.up.railway.app']
+ALLOWED_HOSTS = ['ecommerce-production-d757.up.railway.app']
 CSRF_TRUSTED_ORIGINS = ['https://ecommerce-production-d757.up.railway.app']
 
 
@@ -91,7 +91,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': os.environ['PGDATABASE'],
         'USER': os.environ['PGUSER'],
-        'PASSWORD': os.environ['DATABASES_PASSWORD'],
+        'PASSWORD': os.environ['PGPASSWORD'],
         'HOST': os.environ['PGHOST'],
         'PORT': os.environ['PGPORT'],
     }
