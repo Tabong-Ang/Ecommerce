@@ -92,7 +92,7 @@ DATABASES = {
         'NAME': 'railway',
         'USER': 'postgres',
         'PASSWORD': os.environ['DATABASES_PASSWORD'],
-        'HOST': 'postgres.railway.internal',
+        'HOST': 'crossover.proxy.rlwy.net',
         'PORT': '5432',
     }
 }
