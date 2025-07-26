@@ -30,8 +30,8 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['ecommerce-nz3n.onrender.com']
-CSRF_TRUSTED_ORIGINS = ['https://ecommerce-nz3n.onrender.com']
+ALLOWED_HOSTS = ['ecommerce-production-d757.up.railway.app']
+CSRF_TRUSTED_ORIGINS = ['https://ecommerce-production-d757.up.railway.app/']
 
 
 # Application definition
@@ -89,11 +89,11 @@ DATABASES = {
         # 'ENGINE': 'django.db.backends.sqlite3',
         # 'NAME': BASE_DIR / 'db.sqlite3',
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('DB_NAME'),
-        'USER': os.getenv('DB_USER'),
-        'PASSWORD': os.getenv('DB_PASSWORD'),
-        'HOST': os.getenv('DB_HOST'),
-        'PORT': os.getenv('DB_PORT'),
+        'NAME': os.getenv('PGDATABASE'),
+        'USER': os.getenv('PGUSER'),
+        'PASSWORD': os.getenv('PGPASSWORD'),
+        'HOST': os.getenv('PGHOST'),
+        'PORT': os.getenv('PGPORT'),
         'OPTIONS': {
             'sslmode': 'require',  # Required for Render PostgreSQL
         },
