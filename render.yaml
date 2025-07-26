@@ -1,0 +1,36 @@
+# render.yaml
+services:
+  - type: web
+    name: ecommerce-web
+    runtime: python
+    buildCommand: |
+      pip install -r requirements.txt
+      python manage.py migrate
+      python manage.py collectstatic --noinput
+    startCommand: gunicorn ECommerce.wsgi --bind 0.0.0.0:$PORT
+    envVars:
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DEBUG
+        value: "False"  # Always False in production
+      - key: DB_NAME
+        value: ecommerce_db_z4xp
+      - key: DB_USER
+        value: ecommerce_db_z4xp_user
+      - key: DB_PASSWORD
+        value: AglRANA4MMQ3j9C5hxFemAMeRfoyzbUc
+      - key: DB_HOST
+        value: dpg-d22735vdiees73d5kjb0-a.oregon-postgres.render.com
+      - key: DB_PORT
+        value: "5432"
+      - key: ALLOWED_HOSTS
+        value: ecommerce-qifc.onrender.com
+      - key: CSRF_TRUSTED_ORIGINS
+        value: https://ecommerce-qifc.onrender.com
+    healthCheckPath: /  # Or /admin if you prefer
+
+  - type: postgres
+    name: ecommerce-db
+    plan: free  # Or "starter" for production
+    databaseName: ecommerce_db_z4xp
+    user: ecommerce_db_z4xp_user
