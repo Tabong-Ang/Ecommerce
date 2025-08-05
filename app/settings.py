@@ -30,8 +30,8 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-CSRF_TRUSTED_ORIGINS = []
+ALLOWED_HOSTS = ['ecommerce-production-8470.up.railway.app']
+CSRF_TRUSTED_ORIGINS = ['https://ecommerce-production-8470.up.railway.app']
 
 
 # Application definition
